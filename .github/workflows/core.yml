@@ -43,6 +43,10 @@ jobs:
         run: |
           docker-compose exec -T db bash -c "psql -U postgres -d postgres -c 'CREATE EXTENSION pg_cron;'"
 
+      - name: Create secondary database
+        run: |
+          docker-compose exec -T db bash -c "psql -U postgres -d postgres -c 'CREATE DATABASE other;'"
+
       - name: Check Environment
         run: |
           docker-compose run --rm app env
